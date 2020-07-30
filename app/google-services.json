@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "356906678161",
+    "firebase_url": "https://mygw-50b5d.firebaseio.com",
+    "project_id": "mygw-50b5d",
+    "storage_bucket": "mygw-50b5d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:356906678161:android:fe3e7851e094c54c7b4c30",
+        "android_client_info": {
+          "package_name": "com.example.mygw"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "356906678161-6988olvoupv6vu7eqvkanejhu76eq3g0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCyvcQJ8fHaTGKRtW05xLBoGlJFEbIYF_0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "356906678161-6988olvoupv6vu7eqvkanejhu76eq3g0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
