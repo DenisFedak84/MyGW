@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/projectFragment">
+
+
+    <fragment
+        android:id="@+id/paintFragment"
+        android:name="com.example.mygw.fragments.PaintsFragment"
+        android:label="Paint Fragment"
+        tools:layout="@layout/fragment_paint" />
+    <fragment
+        android:id="@+id/projectFragment"
+        android:name="com.example.mygw.fragments.ProjectsFragment"
+        android:label="Project Fragment"
+        tools:layout="@layout/fragment_project" >
+    </fragment>
+
+</navigation>
