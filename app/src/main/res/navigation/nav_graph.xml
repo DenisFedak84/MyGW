@@ -15,7 +15,35 @@
         android:id="@+id/projectFragment"
         android:name="com.example.mygw.fragments.ProjectsFragment"
         android:label="Project Fragment"
-        tools:layout="@layout/fragment_project" >
+        tools:layout="@layout/fragment_project">
+        <action
+            android:id="@+id/action_projectFragment_to_detailProjectFragment"
+            app:destination="@id/detailProjectFragment" />
+        <argument
+            android:name="pathArg"
+            android:defaultValue="default"
+            app:argType="string" />
+
+        <argument
+            android:name="footerArg"
+            android:defaultValue="default"
+            app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/detailProjectFragment"
+        android:name="com.example.mygw.fragments.DetailProjectFragment"
+        android:label="DetailProjectFragment">
+
+        <argument
+            android:name="pathArg"
+            android:defaultValue="default"
+            app:argType="string" />
+
+        <argument
+            android:name="footerArg"
+            android:defaultValue="default"
+            app:argType="string" />
+    </fragment>
+
 
 </navigation>

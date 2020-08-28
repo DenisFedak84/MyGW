@@ -1,6 +1,5 @@
 package com.example.mygw.fragments
 
-
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,8 +14,7 @@ import com.example.mygw.adapter.ProjectAdapter
 import com.example.mygw.viewmodel.ProjectViewModel
 import kotlinx.android.synthetic.main.fragment_project.*
 
-
-class ProjectsFragment : BaseFragment(), CallbackItemClick {
+class DetailProjectFragment : BaseFragment(), CallbackItemClick {
 
     private val projectViewModel: ProjectViewModel by viewModels { viewModelProviderFactory!! }
     lateinit var adapter: ProjectAdapter
@@ -27,14 +25,17 @@ class ProjectsFragment : BaseFragment(), CallbackItemClick {
         @Nullable container: ViewGroup?,
         @Nullable savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_project, container, false)
+        return inflater.inflate(R.layout.fragment_project_detail, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
         subscriptions()
-        projectViewModel.loadProjects("/Projects/", "Projects",true)
+       arguments?.let {
+          val arg = DetailProjectFragmentArgs.fromBundle(it)
+           projectViewModel.loadProjects(arg.pathArg, arg.footerArg,false)
+       }
     }
 
     private fun setupRecyclerView() {
