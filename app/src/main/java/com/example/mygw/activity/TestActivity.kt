@@ -12,6 +12,7 @@ import androidx.annotation.StringRes
 import com.bumptech.glide.Glide
 import com.example.mygw.R
 import com.example.mygw.utils.Utils
+import com.example.mygw.utils.isEmailAddressValid
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import kotlinx.android.synthetic.main.test_activity.*
@@ -44,15 +45,24 @@ class TestActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        if ("de@gmail.com".isEmailAddressValid())  // тест экстеншен
 
 
-        imageSearchView.setOnClickListener(View.OnClickListener {
-            getContent.launch("*/*")
-        })
+            imageSearchView.setOnClickListener(View.OnClickListener {
+                getContent.launch("*/*")
+            })
 
         imageUploadView.setOnClickListener(View.OnClickListener {
             getFromStorage()
         })
+
+
+        var myLymbda: (Int, Int) -> String = { a: Int, b: Int ->
+            var result = a + b
+            result.toString()
+        }
+
+        myLymbda(3, 5) // тестируем лямбду
     }
 
     private fun getFromStorage() {
@@ -67,9 +77,12 @@ class TestActivity : ComponentActivity() {
         }
     }
 
-    @NeedsPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE)
+    @NeedsPermission(
+        Manifest.permission.WRITE_EXTERNAL_STORAGE,
+        Manifest.permission.READ_EXTERNAL_STORAGE
+    )
     fun saveInStorage() {
-        if (file.isFile){
+        if (file.isFile) {
             val randomName = Random.nextInt(0, 10000)
 
             val mountainsRef = storageRef.child("/Projects/Cultist/$randomName.jpg")
@@ -82,28 +95,41 @@ class TestActivity : ComponentActivity() {
             }.addOnSuccessListener {
                 textView.text = "Success"
             }
-        }else{
+        } else {
             Toast.makeText(this, "file null", Toast.LENGTH_SHORT).show()
         }
 
     }
 
-    @OnShowRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE)
+    @OnShowRationale(
+        Manifest.permission.WRITE_EXTERNAL_STORAGE,
+        Manifest.permission.READ_EXTERNAL_STORAGE
+    )
     fun showRationaleForStorage(request: PermissionRequest) {
         showRationaleDialog(R.string.app_name, request)
     }
 
-    @OnPermissionDenied(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE)
+    @OnPermissionDenied(
+        Manifest.permission.WRITE_EXTERNAL_STORAGE,
+        Manifest.permission.READ_EXTERNAL_STORAGE
+    )
     fun onStorageDenied() {
         Toast.makeText(this, "Permission denied", Toast.LENGTH_SHORT).show()
     }
 
-    @OnNeverAskAgain(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE)
+    @OnNeverAskAgain(
+        Manifest.permission.WRITE_EXTERNAL_STORAGE,
+        Manifest.permission.READ_EXTERNAL_STORAGE
+    )
     fun onStorageNeverAskAgain() {
         Toast.makeText(this, "Permission never ask again", Toast.LENGTH_SHORT).show()
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>,
+        grantResults: IntArray
+    ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         onRequestPermissionsResult(requestCode, grantResults)
     }

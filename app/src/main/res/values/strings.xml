@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">MyGW</string>
+    <string name="save_success">The %1$s has saved </string>
+    <string name="load_success">The %1$s has loaded </string>
 </resources>

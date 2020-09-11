@@ -12,6 +12,11 @@
             android:id="@+id/paintFragment"
             android:icon="@drawable/ic_baseline_image_search_24"
             android:title="Paint" />
+
+        <item
+            android:id="@+id/flowFragment"
+            android:icon="@drawable/ic_baseline_directions_bike_24"
+            android:title="Flow" />
     </group>
 
 </menu>

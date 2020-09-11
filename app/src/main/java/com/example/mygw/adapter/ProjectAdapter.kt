@@ -12,7 +12,8 @@ import com.example.mygw.fragments.ProjectsFragmentDirections
 import com.example.mygw.model.FolderModel
 import com.example.mygw.model.FooterModel
 import com.example.mygw.model.ProjectModel
-import kotlinx.android.synthetic.main.adapter_item.view.*
+import kotlinx.android.synthetic.main.adapter_item.view.image
+import kotlinx.android.synthetic.main.folder_item.view.*
 import kotlinx.android.synthetic.main.footer_item.view.*
 
 
@@ -22,7 +23,7 @@ class ProjectAdapter(var callbackItemClick: CallbackItemClick,  val context: Con
         abstract fun bind(item: T)
     }
 
-    private var adapterDataList: List<Any> = emptyList()
+    var adapterDataList: List<Any> = emptyList()
 
     companion object {
         private const val TYPE_FOOTER = 0
@@ -41,7 +42,7 @@ class ProjectAdapter(var callbackItemClick: CallbackItemClick,  val context: Con
                 ProjectViewHolder(view)
             }
             TYPE_FOLDER ->{
-                val view = LayoutInflater.from(context).inflate(R.layout.footer_item, parent, false)
+                val view = LayoutInflater.from(context).inflate(R.layout.folder_item, parent, false)
                 FolderViewHolder(view)
             }
             else -> throw IllegalArgumentException("Invalid view type")
@@ -71,8 +72,8 @@ class ProjectAdapter(var callbackItemClick: CallbackItemClick,  val context: Con
 
         override fun bind(item: FolderModel) = with(itemView) {
             var title = item.name
-            textView.text = title
-            textView.setOnClickListener(View.OnClickListener {
+           folderTitleView.text = title
+            folderContainerView.setOnClickListener(View.OnClickListener {
 //                callbackItemClick.itemClick(item.name)
                 val action = ProjectsFragmentDirections.actionProjectFragmentToDetailProjectFragment(pathArg = "/Projects/$title/", footerArg = title)
                 it.findNavController().navigate(action)

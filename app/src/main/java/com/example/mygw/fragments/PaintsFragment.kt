@@ -23,11 +23,11 @@ class PaintsFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        subscriptions()
+        subscriptionsPaints()
         paintViewModel.loadPaints()
     }
 
-    private fun subscriptions() {
+      fun subscriptionsPaints() {
         subscribeToLoadPaints()
     }
 

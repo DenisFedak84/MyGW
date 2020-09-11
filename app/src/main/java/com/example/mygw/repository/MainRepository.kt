@@ -21,7 +21,6 @@ class MainRepository @Inject constructor() {
     }
 
     suspend fun loadData(
-//        path: String = "/Projects/Cultist/",
         path: String,
         footer: String,
         folder: Boolean
@@ -59,7 +58,7 @@ class MainRepository @Inject constructor() {
     private fun downloadFolders(items: ListResult): MutableList<Any> {
         val prefix = items.prefixes
         for (i in prefix) {
-            val name = i.toString().substring(i.toString().lastIndexOf("/")+1)
+            val name = i.toString().substring(i.toString().lastIndexOf("/") + 1)
             val item = FolderModel(name)
             urls.add(item)
         }
@@ -76,6 +75,15 @@ class MainRepository @Inject constructor() {
             urls.add(item)
         }
         return urls
+    }
+
+    fun deleteItem(path: String): Boolean {
+        try {
+            val result = storageRef.child(path).delete()
+        } catch (exeptions: Exception) {
+            println()
+        }
+        return false
     }
 
 }

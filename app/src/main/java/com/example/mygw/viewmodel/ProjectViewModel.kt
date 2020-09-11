@@ -14,15 +14,22 @@ class ProjectViewModel @Inject constructor(
     var context: Context
 ) : BaseViewModel(context as Application) {
 
-
     private val data: LiveData<List<Any>>
         get() = dataLiveData
     private val dataLiveData by lazy { MutableLiveData<List<Any>>() }
 
-     fun loadProjects(path: String , footer: String, folder: Boolean) {
-         viewModelScope.launch {
-             setData(mainRepository.loadData(path,footer, folder))
-         }
+    private val delete: LiveData<Boolean>
+        get() = deleteLiveData
+    private val deleteLiveData by lazy { MutableLiveData<Boolean>() }
+
+    fun loadProjects(path: String, footer: String, folder: Boolean) {
+        viewModelScope.launch {
+            setData(mainRepository.loadData(path, footer, folder))
+        }
+    }
+
+    fun delete(path: String) {
+        setDeleteResult(mainRepository.deleteItem(path))
     }
 
     private fun setData(message: List<Any>) {
@@ -31,5 +38,13 @@ class ProjectViewModel @Inject constructor(
 
     fun getDataResponse(): LiveData<List<Any>> {
         return data
+    }
+
+    fun getDeleteResponse(): LiveData<Boolean> {
+        return delete
+    }
+
+    fun setDeleteResult(result: Boolean) {
+        deleteLiveData.postValue(result)
     }
 }
