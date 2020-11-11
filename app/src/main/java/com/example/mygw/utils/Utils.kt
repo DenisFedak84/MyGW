@@ -9,11 +9,14 @@ import android.os.Build
 import android.os.Environment
 import android.provider.DocumentsContract
 import android.provider.MediaStore
+import com.example.mygw.model.NotesModel
+import com.example.mygw.model.response.ItemStackOverflow
+import com.example.mygw.model.response.StackOverflowModel
 
 
 class Utils {
 
-    companion object{
+    companion object {
         @SuppressLint("NewApi")
         fun getRealPathApi19Above(
             context: Context,
@@ -99,7 +102,6 @@ class Utils {
                 }
 
 
-
             } catch (e: Exception) {
                 filePath = ""
             }
@@ -107,7 +109,12 @@ class Utils {
         }
 
 
-        fun getDataColumn(context: Context, uri: Uri?, selection: String?, selectionArgs: Array<String>?): String? {
+        fun getDataColumn(
+            context: Context,
+            uri: Uri?,
+            selection: String?,
+            selectionArgs: Array<String>?
+        ): String? {
             var cursor: Cursor? = null
             val column = "_data"
             val projection = arrayOf(
@@ -144,8 +151,21 @@ class Utils {
             return "com.android.externalstorage.documents" == uri.authority
         }
 
-    }
+        fun convertItems(stackModels: StackOverflowModel): List<ItemStackOverflow> {
+            val stackItems = mutableListOf<ItemStackOverflow>()
+            stackItems.addAll(stackModels.items)
+            return stackItems
+        }
 
+        fun getMockData(): List<NotesModel> {
+            val data = mutableListOf<NotesModel>()
+            for (i in 0..5) {
+                val model = NotesModel(i, i.toString(), i.toString())
+                data.add(model)
+            }
+            return data
+        }
+    }
 
 
 }

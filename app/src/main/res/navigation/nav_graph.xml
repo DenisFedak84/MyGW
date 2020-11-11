@@ -49,5 +49,13 @@
         android:name="com.example.mygw.fragments.FlowFragment"
         android:label="FlowFragment" />
 
+    <fragment
+        android:id="@+id/pagingFragment"
+        android:name="com.example.mygw.fragments.PagingFragment"
+        android:label="PagingFragment" />
 
+    <fragment
+        android:id="@+id/notificationFragment"
+        android:name="com.example.mygw.fragments.NotificationFragment"
+        android:label="NotificationFragment" />
 </navigation>

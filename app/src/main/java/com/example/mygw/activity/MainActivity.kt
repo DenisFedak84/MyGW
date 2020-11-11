@@ -44,7 +44,8 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean { // тулбар кнопка назад и гамбургер
 //        return NavigationUI.navigateUp(navController,drawer_layout) - дефолтное поведение
         if (navController.currentDestination!!.id == R.id.paintFragment ||
-            navController.currentDestination!!.id == R.id.flowFragment ){
+            navController.currentDestination!!.id == R.id.flowFragment ||
+            navController.currentDestination!!.id == R.id.notificationFragment ){
 //            finish() // закрываем активити если нажимаешь назад на последнем фрагменте
             drawerLayout.open()
         }

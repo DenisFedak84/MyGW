@@ -3,6 +3,7 @@ package com.example.mygw.dagger.module
 
 import androidx.lifecycle.ViewModel
 import com.example.mygw.viewmodel.FlowViewModel
+import com.example.mygw.viewmodel.PagingViewModel
 import com.example.mygw.viewmodel.PaintViewModel
 import com.example.mygw.viewmodel.ProjectViewModel
 import dagger.Binds
@@ -28,4 +29,8 @@ abstract class ViewModelModule {
     @ViewModelKey(FlowViewModel::class)
     abstract fun bindFlowViewModel(flowViewModel : FlowViewModel): ViewModel
 
+    @Binds
+    @IntoMap
+    @ViewModelKey(PagingViewModel::class)
+    abstract fun bindPagingViewModel(pagingViewModel : PagingViewModel): ViewModel
 }

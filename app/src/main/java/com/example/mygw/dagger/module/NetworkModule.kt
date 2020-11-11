@@ -1,6 +1,16 @@
 package com.example.mygw.dagger.module
 
+import android.content.Context
+import androidx.room.Room
+import com.example.mygw.db.AppDatabase
+import com.example.mygw.db.NotesDao
+import com.example.mygw.network.NotesApi
 import dagger.Module
+import dagger.Provides
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 
 /**
@@ -11,32 +21,32 @@ import dagger.Module
 @Suppress("unused")
 class NetworkModule {
 
-//    /**
-//     * Provides the Car service implementation.
-//     * @param retrofit the Retrofit object used to instantiate the service
-//     * @return the Car service implementation.
-//     */
-//    @Provides
-//    internal fun providePostApi(retrofit: Retrofit): CarApi {
-//        return retrofit.create(CarApi::class.java)
-//    }
-//
-//    /**
-//     * Provides the Retrofit object.
-//     * @return the Retrofit object
-//     */
-//    @Provides
-//    internal fun provideRetrofitInterface(): Retrofit {
-//        return Retrofit.Builder()
-//            .baseUrl(BASE_URL)
-//            .addConverterFactory(MoshiConverterFactory.create())
-//            .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
-//            .build()
-//    }
-//
-//    @Provides
-//    internal fun provideCarDao(context : Context): CarDao {
-//        return Room.databaseBuilder(context, AppDatabase::class.java, "cars").build().carDao()
-//    }
+    @Provides
+    internal fun providePostApi(retrofit: Retrofit): NotesApi {
+        return retrofit.create(NotesApi::class.java)
+    }
+
+    @Provides
+    internal fun provideRetrofitInterface(): Retrofit {
+
+        return Retrofit.Builder()
+            .baseUrl("https://api.stackexchange.com")
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(createOkHttp())
+            .build()
+    }
+
+    fun createOkHttp(): OkHttpClient {
+        val okhttp = OkHttpClient.Builder()
+        val loggingInterceptor = HttpLoggingInterceptor()
+        loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
+        okhttp.addInterceptor(loggingInterceptor)
+        return okhttp.build()
+    }
+
+    @Provides
+    internal fun provideNotesDao(context: Context): NotesDao {
+        return Room.databaseBuilder(context, AppDatabase::class.java, "notes").build().notesDao()
+    }
 
 }

@@ -24,7 +24,7 @@ class ProjectViewModel @Inject constructor(
 
     fun loadProjects(path: String, footer: String, folder: Boolean) {
         viewModelScope.launch {
-            setData(mainRepository.loadData(path, footer, folder))
+            setData(mainRepository.loadDataFromFirestore(path, footer, folder))
         }
     }
 

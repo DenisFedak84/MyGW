@@ -17,6 +17,16 @@
             android:id="@+id/flowFragment"
             android:icon="@drawable/ic_baseline_directions_bike_24"
             android:title="Flow" />
+
+        <item
+            android:id="@+id/pagingFragment"
+            android:icon="@drawable/ic_baseline_developer_mode_24"
+            android:title="Paging" />
+
+        <item
+            android:id="@+id/notificationFragment"
+            android:icon="@drawable/ic_baseline_message_24"
+            android:title="Notification" />
     </group>
 
 </menu>

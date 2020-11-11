@@ -11,6 +11,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.StringRes
 import com.bumptech.glide.Glide
 import com.example.mygw.R
+import com.example.mygw.test.Delegate
 import com.example.mygw.utils.Utils
 import com.example.mygw.utils.isEmailAddressValid
 import com.google.firebase.ktx.Firebase
@@ -24,6 +25,11 @@ import kotlin.random.Random
 @RuntimePermissions
 class TestActivity : ComponentActivity() {
     private lateinit var file: File
+
+    val one = null
+    val two = 1
+
+    var p: String by Delegate()
 
     private val getContent =
         registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->

@@ -1,10 +1,7 @@
 package com.example.mygw.dagger.module
 
 
-import com.example.mygw.fragments.DetailProjectFragment
-import com.example.mygw.fragments.FlowFragment
-import com.example.mygw.fragments.PaintsFragment
-import com.example.mygw.fragments.ProjectsFragment
+import com.example.mygw.fragments.*
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -23,4 +20,9 @@ abstract class FragmentModule {
     @ContributesAndroidInjector
     abstract fun contributeFlowFragmentInjector() : FlowFragment
 
+    @ContributesAndroidInjector
+    abstract fun contributePagingFragmentInjector() : PagingFragment
+
+    @ContributesAndroidInjector
+    abstract fun contributeNotificationFragmentInjector() : NotificationFragment
 }
